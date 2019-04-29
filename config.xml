@@ -16,6 +16,8 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+    <allow-navigation href="http://*/*" />
+    <allow-navigation href="https://*/*" />
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>
@@ -23,4 +25,5 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <plugin name="zenva-bitmovin-plugin" spec="./zenva-bitmovin-plugin" />
 </widget>

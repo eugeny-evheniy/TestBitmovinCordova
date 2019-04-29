@@ -47,16 +47,42 @@ body {
 
 /* Portrait layout (default) */
 .app {
-    background:url(../img/logo.png) no-repeat center top; /* 170px x 200px */
+    background:white no-repeat center top; /* 170px x 200px */
     position:absolute;             /* position in the center of the screen */
-    left:50%;
-    top:50%;
-    height:50px;                   /* text area height */
-    width:225px;                   /* text area width */
-    text-align:center;
-    padding:180px 0px 0px 0px;     /* image height is 200px (bottom 20px are overlapped with text) */
-    margin:-115px 0px 0px -112px;  /* offset vertical: half of image height and text area height */
-                                   /* offset horizontal: half of text area width */
+    left:0;
+    top:0;
+    right: 0;
+    bottom: 0;
+    /* width:100%;                   text area width */
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+.zenva-btn {
+    width: 200px;
+    margin: 8px auto;
+    padding: 10px;
+}
+
+#myProgress {
+  position:relative;
+  width: 100%;
+  background-color: grey;
+  margin-top: 12px;
+}
+
+#myBar {
+  width: 0;
+  height:20px;
+  padding:0;
+  background-color: green;
+}
+
+#myValue {
+  position: absolute;
+  width: 50%;
+  font-size:12px;
 }
 
 /* Landscape layout (with min-width) */
