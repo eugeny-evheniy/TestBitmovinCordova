@@ -8,5 +8,21 @@
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "author": "Apache Cordova Team",
-    "license": "Apache-2.0"
+    "license": "Apache-2.0",
+    "dependencies": {
+        "cordova-android": "^7.1.4",
+        "cordova-plugin-whitelist": "^1.3.3",
+        "zenva-bitmovin-plugin": "file:zenva-bitmovin-plugin"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-whitelist": {},
+            "zenva-bitmovin-plugin": {
+                "BITMOVIN_PLAYER_KEY": "48b5fe36-603f-4047-a596-d7a1ca021f73"
+            }
+        },
+        "platforms": [
+            "android"
+        ]
+    }
 }

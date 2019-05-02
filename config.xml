@@ -25,5 +25,8 @@
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
-    <plugin name="zenva-bitmovin-plugin" spec="./zenva-bitmovin-plugin" />
+    <engine name="android" spec="~7.1.4" />
+    <plugin name="zenva-bitmovin-plugin" spec="./zenva-bitmovin-plugin">
+        <variable name="BITMOVIN_PLAYER_KEY" value="48b5fe36-603f-4047-a596-d7a1ca021f73" />
+    </plugin>
 </widget>

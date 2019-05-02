@@ -21,13 +21,23 @@ var demoUrl = "https://academy.zenva.com/wp-json/zva-mobile-app/v1/demoWidevine"
 var paused = false;
 var is_downloading = false;
 var streaming_url = "https://zavideoplatform.streaming.mediaservices.windows.net///2c856c2a-b469-4a0d-a6c1-984fee7017c9/03. Creating Numpy Arrays.ism/manifest(format=mpd-time-csf,encryption=cenc)";
-var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FjYWRlbXkuemVudmEuY29tIiwiaWF0IjoxNTU2MzYzNjQxLCJleHAiOjE1NTYzNzgwNzEsImF1ZCI6Imh0dHBzOi8vYWNhZGVteS56ZW52YS5jb20iLCJzdWIiOjAsInp2YWlwIjoiMTA0LjIwMy4xNTUuOTciLCJ6dmFwb3N0IjowfQ.cM-KrQpcD4U3Mkabvzw5f-UFLHGasPfmau94VYSr5pU";
+var token = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwczovL2FjYWRlbXkuemVudmEuY29tIiwiaWF0IjoxNTU2NzU1MzIwLCJleHAiOjE1NTY3Njk3NTAsImF1ZCI6Imh0dHBzOi8vYWNhZGVteS56ZW52YS5jb20iLCJzdWIiOjAsInp2YWlwIjoiNjAuMjAuMC4yNTAiLCJ6dmFwb3N0IjowfQ.sjx33a8nbwFfjgQ32DCwh3wFtEJqTVomSS6T4HucHBg";
 var ccUrl = "https://zavideoplatform.blob.core.windows.net/closed-captions/lesson-635112-en.vtt";
 var lessonId = "ZenvaTest2";
 
 var setListener = function() {
     $("#stream_video").click(function(){
-        window.plugins.Bitmovin.streamVideo(streaming_url, token, ccUrl, 10);
+        window.plugins.Bitmovin.streamVideo(streaming_url, token, ccUrl, 10,
+            function(data){
+                if(data.event="action")
+                {
+//                    alert(data.value);
+                }
+            },
+            function(err){
+                alert(err);
+            }
+        );
     });
 
     $("#download_video").click(function(){
@@ -47,11 +57,12 @@ var setListener = function() {
                     $("#play_downloadvideo").attr("disabled", false);
                 }
                 if(data.event == "error"){
-                    
+//                    alert(data.value);
                 }
             },
             function(err){
                 console.error(err);
+                alert(err);
             }
         );
     });
@@ -68,6 +79,13 @@ var setListener = function() {
             window.plugins.Bitmovin.resumeDownload(lessonId);
             $("#pause_resume_download").html("Pause");
         }
+    });
+
+    $("#stop_download").click(function(){
+        if(!is_downloading){
+            return false;
+        }
+        window.plugins.Bitmovin.stopDownload(lessonId);
     });
 
     $("#play_downloadvideo").click(function(){
@@ -97,7 +115,9 @@ var app = {
           token = data.tokenWidevine;
           ccUrl = data.ccUrl;
           setListener();
-        });
+        }).fail(function() {
+              alert('Cannot get Info from demo url. Please check Network.'); // or whatever
+          });
     }
 };
 
